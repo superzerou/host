@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    container_name: minecraft-paper
+    environment:
+      - EULA=TRUE
+      - TYPE=PAPER
+      - VERSION=1.21.4
+      - PAPER_DOWNLOAD_CHANNEL=experimental  # Mencoba channel experimental
+      - MEMORY=4G
+      - ONLINE_MODE=TRUE
+      - ENFORCE_WHITELIST=TRUE
+      - DIFFICULTY=hard
+      - PVP=true
+      - VIEW_DISTANCE=10
+      - MAX_PLAYERS=10
+    volumes:
+      - ./minecraft-data:/data
+    ports:
+      - "25565:25565"
+      - "24454:24454/udp"  # Port untuk Simple Voice Chat
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
